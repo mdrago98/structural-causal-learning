@@ -258,3 +258,45 @@ def evaluate_reconstruction(W_true, W_est, threshold=0.01, figsize=(12, 4),
 
     return results
 
+
+from matplotlib import pyplot as plt
+def create_augmented_lagrangian_visualization():
+    """
+    Create a visual explanation of the method.
+    """
+
+    # Pseudocode for a conceptual plot
+    iterations = [1, 2, 3, 4, 5]
+    constraint_violation = [0.8, 0.6, 0.3, 0.1, 0.01]  # h(W) values
+    penalty_strength = [1, 2, 5, 10, 20]  # ρ values
+
+    plt.figure(figsize=(12, 4))
+
+    # Plot 1: Constraint violation over time
+    plt.subplot(1, 3, 1)
+    plt.plot(iterations, constraint_violation, 'ro-', linewidth=2)
+    plt.axhline(y=0, color='g', linestyle='--', label='Target: h(W) = 0')
+    plt.xlabel('Iteration')
+    plt.ylabel('Constraint Violation h(W)')
+    plt.title('Constraint Satisfaction')
+    plt.legend()
+
+    # Plot 2: Penalty strength over time
+    plt.subplot(1, 3, 2)
+    plt.plot(iterations, penalty_strength, 'bo-', linewidth=2)
+    plt.xlabel('Iteration')
+    plt.ylabel('Penalty Parameter ρ')
+    plt.title('Adaptive Penalty Strength')
+
+    # Plot 3: Conceptual landscape
+    plt.subplot(1, 3, 3)
+    # This would show how the penalty landscape changes
+    plt.text(0.5, 0.7, 'Iteration 1:\nMild penalties', ha='center', transform=plt.gca().transAxes)
+    plt.text(0.5, 0.5, '↓', ha='center', transform=plt.gca().transAxes, fontsize=20)
+    plt.text(0.5, 0.3, 'Iteration 5:\nStrict penalties', ha='center', transform=plt.gca().transAxes)
+    plt.title('Penalty Landscape Evolution')
+    plt.axis('off')
+
+    plt.tight_layout()
+    return plt
+
